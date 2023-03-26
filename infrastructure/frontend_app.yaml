@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: frontend=192.168.44.44:8082/docker_registry/frontend
+    argocd-image-updater.argoproj.io/frontend.update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: argocd
+  name: frontend
+spec:
+  destination:
+    name: ''
+    namespace: default
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: frontend
+    repoURL: 'https://github.com/rvvaar/ArgoCD.git'
+    targetRevision: master
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
