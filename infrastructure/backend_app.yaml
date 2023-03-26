@@ -1,6 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: backend=192.168.44.44:8082/docker_registry/backend
     argocd-image-updater.argoproj.io/backend.update-strategy: latest
